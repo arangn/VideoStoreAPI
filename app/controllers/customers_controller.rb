@@ -31,6 +31,6 @@ class CustomersController < ApplicationController
   end
 
   def jsonify(customer)
-    return customer.as_json(only: [:id, :name, :registered_at, :address, :city, :state, :postal_code, :phone)
+    return customer.as_json(only: [:id, :name, :registered_at, :address, :city, :state, :postal_code, :phone])
   end
 end
