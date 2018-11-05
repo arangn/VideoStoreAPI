@@ -1,7 +1,7 @@
 class RentalsController < ApplicationController
   def index
     rentals = Rental.all
-    render json: jsonify(rental)
+    render json: jsonify(rentals)
   end
 
   def show
