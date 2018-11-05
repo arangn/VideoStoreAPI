@@ -31,6 +31,6 @@ class RentalsController < ApplicationController
   end
 
   def jsonify(rental)
-    return rental.as_json(only: [(:check_in_date, :check_out_date)])
+    return rental.as_json(only: [:check_in_date, :check_out_date])
   end
 end
