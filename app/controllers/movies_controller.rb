@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   def index
     movies = Movie.all
-    render json: jsonify(movie)
+    render json: jsonify(movies)
   end
 
   def show
