@@ -71,7 +71,7 @@ describe MoviesController do
 
     it "creates a new movie given valid data" do
       expect {
-        post movies_path, params: movie_data
+        post movies_path, params: {movie: movie_data}
       }.must_change "Movie.count"
 
       body = check_response(expected_type: Hash)
@@ -83,7 +83,7 @@ describe MoviesController do
       movie_data["title"] = nil
       # binding.pry
       expect {
-        post movies_path, params: movie_data
+        post movies_path, params: {movie: movie_data}
       }.wont_change "Movie.count"
       body = check_response(expected_type: Hash)
       expect(body).must_include "errors"

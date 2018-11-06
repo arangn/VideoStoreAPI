@@ -97,7 +97,7 @@ describe CustomersController do
       it "returns an error for invalid customer data" do
 
         customer_hash["name"] = nil
-        
+
         expect {
           post customers_path, params: { customer: customer_hash }
         }.wont_change "Customer.count"

@@ -18,6 +18,7 @@ class CustomersController < ApplicationController
 
   def create
     customer = Customer.new(customer_params)
+    binding.pry
     if customer.save
       render json: {id: customer.id}
     else
