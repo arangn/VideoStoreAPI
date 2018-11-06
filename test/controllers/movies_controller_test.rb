@@ -60,17 +60,35 @@ describe MoviesController do
   end
 
   describe "create method" do
-    it "can create a movie" do
-      movie_params = {
-      movie: {
-        title: "Movie",
-        overview: 2018-01-01,
-        release_date: "words words words",
+    let(:movie_data) {
+      {
+        title: "Idk",
+        overview: "string",
+        release_date: "2018-9-9",
         inventory: 3
-      }}
-      post movies_path(params: movie_params)
+      }
+    }
+
+    it "creates a new movie given valid data" do
+      expect {
+        post movies_path, params: movie_data
+      }.must_change "Movie.count"
+
       body = check_response(expected_type: Hash)
+      movie = Movie.find(body["id"].to_i)
+      expect(movie.title).must_equal movie_data[:title]
+    end
+
+    it "returns an error for invalid movie data" do
+      movie_data["title"] = nil
+      # binding.pry
+      expect {
+        post movies_path, params: movie_data
+      }.wont_change "Movie.count"
+      body = check_response(expected_type: Hash)
+      expect(body).must_include "errors"
+      expect(body["errors"]).must_include "title"
+      must_respond_with :bad_request
     end
   end
-
 end
