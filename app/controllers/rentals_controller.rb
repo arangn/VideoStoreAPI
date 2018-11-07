@@ -17,8 +17,10 @@ class RentalsController < ApplicationController
 
   def create
     rental = Rental.new(rental_params)
+    # binding.pry
     if rental.save
       render json: {id: rental.id}
+      # binding.pry
     else
       render_error(:bad_request, rental.errors.messages)
     end
@@ -27,10 +29,10 @@ class RentalsController < ApplicationController
   private
 
   def rental_params
-    params.require(:rental).permit(:check_in_date, :check_out_date, :due_date)
+    params.require(:rental).permit(:check_in_date, :check_out_date, :due_date, :movie_id, :customer_id)
   end
 
   def jsonify(rental)
-    return rental.as_json(only: [:check_in_date, :check_out_date, :due_date])
+    return rental.as_json(only: [:check_in_date, :check_out_date, :due_date, :movie_id, :customer_id])
   end
 end

@@ -1,6 +1,6 @@
 class Rental < ApplicationRecord
-  belongs_to :movies
-  belongs_to :customers
+  belongs_to :movie
+  belongs_to :customer
 
 
   validates :movie_id, :customer_id, :due_date, :check_out_date, presence: true
