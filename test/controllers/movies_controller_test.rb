@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe MoviesController do
-  MOVIE_FIELDS = %w(id title overview release_date inventory).sort
+  MOVIE_FIELDS = %w(id title overview release_date inventory available_inventory).sort
 
   def check_response(expected_type:, expected_status: :success)
     expect(response.header['Content-Type']).must_include 'json'
