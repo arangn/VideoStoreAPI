@@ -28,10 +28,10 @@ class CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:name, :registered_at, :address, :city, :state, :postal_code, :phone)
+    params.require(:customer).permit(:name, :registered_at, :address, :city, :state, :postal_code, :phone, :movies_checked_out)
   end
 
   def jsonify(customer)
-    return customer.as_json(only: [:id, :name, :registered_at, :address, :city, :state, :postal_code, :phone])
+    return customer.as_json(only: [:id, :name, :registered_at, :address, :city, :state, :postal_code, :phone, :movies_checked_out])
   end
 end

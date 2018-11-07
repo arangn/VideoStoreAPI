@@ -4,8 +4,9 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  check_out_date: Wed, 29 Apr 2015 07:54:14 -0700
+  check_in_date: Wed, 6 May 2015 07:54:14 -0700
+  due_date: Wed, 6 May 2015 07:54:14 -0700
+  movie: one
+  customer: one

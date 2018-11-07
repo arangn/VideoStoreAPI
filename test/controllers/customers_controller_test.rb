@@ -2,7 +2,7 @@ require "test_helper"
 require "pry"
 
 describe CustomersController do
-  CUSTOMER_FIELDS = %w(id name registered_at address city state postal_code phone).sort
+  CUSTOMER_FIELDS = %w(id name registered_at address city state postal_code phone movies_checked_out).sort
 
   # Helper method to dry code
   def check_response(expected_type:, expected_status: :success)

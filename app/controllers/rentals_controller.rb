@@ -27,10 +27,10 @@ class RentalsController < ApplicationController
   private
 
   def rental_params
-    params.require(:rental).permit(:check_in_date, :check_out_date)
+    params.require(:rental).permit(:check_in_date, :check_out_date, :due_date)
   end
 
   def jsonify(rental)
-    return rental.as_json(only: [:check_in_date, :check_out_date])
+    return rental.as_json(only: [:check_in_date, :check_out_date, :due_date])
   end
 end

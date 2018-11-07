@@ -9,9 +9,11 @@ one:
   overview: A movie about an elf
   release_date: 2001-01-18
   inventory: 3
+  available_inventory: 3
 
 two:
   title: Finding nemo
   overview: Nemo gets lost and chaos ensues
   release_date: 2004-01-10
   inventory: 1
+  available_inventory: 1
