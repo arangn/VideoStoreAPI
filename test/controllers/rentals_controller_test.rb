@@ -91,25 +91,45 @@ describe RentalsController do
       expect(body["errors"]).must_include "check_out_date"
       must_respond_with :bad_request
     end
-    # it "decrements one movie from available inventory" do
-    #   expect {
-    #     post rentals_path, params: {rental: rental_data}
-    #   }.must_change "Rental.count"
-    #   body = check_response(expected_type: Hash)
-    #   rental = Rental.find(body["id"].to_i)
-    #   movie = rental.movie_id
-    #   movie = Movie.find(movie)
-    #   expect(Movie.available_inventory).must_change "available_inventory.count", -1
-    # end
-    it "decrements one movie from available inventory" do
-      expect do
-        post rentals_path, params: {rental: rental_data}
-        body = check_response(expected_type: Hash)
-        rental = Rental.find(body["id"].to_i)
-        movie = rental.movie_id
-        movie = Movie.find(movie)
-      end.to_change(movie.available_inventory, :count).by(-1)
-    end
-
+    # # it "decrements one movie from available inventory" do
+    # #   expect {
+    # #     post rentals_path, params: {rental: rental_data}
+    # #   }.must_change "Rental.count"
+    # #   body = check_response(expected_type: Hash)
+    # #   rental = Rental.find(body["id"].to_i)
+    # #   movie = rental.movie_id
+    # #   movie = Movie.find(movie)
+    # #   expect(Movie.available_inventory).must_change "available_inventory.count", -1
+    # # end
   end
+
+#   describe "movie" do
+#     before do
+#       @rental_data =
+#         {
+#           check_out_date: "Wed, 29 Apr 2015 07:54:14 -0700",
+#           check_in_date: "Wed, 6 May 2015 07:54:14 -0700",
+#           due_date: "Wed, 6 May 2015 07:54:14 -0700",
+#           customer_id: customers(:one).id,
+#           movie_id: movies(:one).id
+#         }
+#
+#       post rentals_path, params: {@rental_data}
+#       body = check_response(expected_type: Hash)
+#       rental = Rental.find(body["id"].to_i)
+#       movie = rental.movie_id
+#       @movie = Movie.find(movie)
+#     end
+#
+#     it "decrements one movie from available inventory" do
+#       expect(@movie.available_inventory).must_change "Movie.available_inventory.count", -1
+#     end
+#     # expect do
+#     #   post rentals_path, params: {rental: rental_data}
+#     #   body = check_response(expected_type: Hash)
+#     #   rental = Rental.find(body["id"].to_i)
+#     #   movie = rental.movie_id
+#     #   @movie = Movie.find(movie)
+#     # end.to_change(@movie.available_inventory, :count).by(-1)
+#   end
 end
