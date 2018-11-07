@@ -17,6 +17,7 @@ class MoviesController < ApplicationController
 
   def create
     movie = Movie.new(movie_params)
+    movie.available_inventory = movie_params[:inventory]
     if movie.save
       render json: {id: movie.id}
     else
@@ -27,7 +28,7 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.require(:movie).permit(:title, :overview, :release_date, :inventory, :available_inventory)
+    params.require(:movie).permit(:title, :overview, :release_date, :inventory)
   end
 
   def jsonify(movie)
