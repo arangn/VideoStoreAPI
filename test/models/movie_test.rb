@@ -1,9 +1,8 @@
 require "test_helper"
-require 'pry'
 
 describe Movie do
   let(:elf) { movies(:one) }
-  let(:movie) { Movie.new }
+  # let(:movie) { Movie.new }
 
   it "must be valid" do
     value(elf).must_be :valid?
