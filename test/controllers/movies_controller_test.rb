@@ -65,7 +65,8 @@ describe MoviesController do
         title: "Idk",
         overview: "string",
         release_date: "2018-9-9",
-        inventory: 3
+        inventory: 3,
+        available_inventory: 3
       }
     }
 
