@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe RentalsController do
-  RENTAL_FIELDS = %w(check_in_date check_out_date due_date movie_id customer_id).sort
+  RENTAL_FIELDS = %w(id check_in_date check_out_date due_date movie_id customer_id).sort
 
   def check_response(expected_type:, expected_status: :success)
     expect(response.header['Content-Type']).must_include 'json'
@@ -81,14 +81,14 @@ describe RentalsController do
     end
 
     it "returns an error for invalid rental data" do
-      rental_data["check_out_date"] = nil
+      rental_data["movie_id"] = nil
       # binding.pry
       expect {
         post rentals_path, params: {rental: rental_data}
       }.wont_change "Rental.count"
       body = check_response(expected_type: Hash)
       expect(body).must_include "errors"
-      expect(body["errors"]).must_include "check_out_date"
+      expect(body["errors"]).must_include "movie_id"
       must_respond_with :bad_request
     end
     # # it "decrements one movie from available inventory" do
