@@ -8,5 +8,5 @@ one:
   check_out_date: Wed, 29 Apr 2015 07:54:14 -0700
   check_in_date: Wed, 6 May 2015 07:54:14 -0700
   due_date: Wed, 6 May 2015 07:54:14 -0700
-  movie: one
-  customer: one
+  movie_id: one
+  customer_id: one
