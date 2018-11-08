@@ -26,18 +26,23 @@ class RentalsController < ApplicationController
       if rental.save
         rental.movie.available_inventory = rental.movie.available_inventory - 1
         # binding.pry
-        render json: jsonify(rental)
+        render json: jsonify(rental.movie.available_inventory)
       else
         render_error(:bad_request, rental.errors.messages)
       end
     end
   end
 
-  # def check_in
-  #   rental = Rental.find_by(id: params[:id])
-  #   rental.check_in_date = DateTime.now
-  #
-  # end
+  def check_in
+    rental = Rental.find_by(rental_params)
+    if rental
+      rental.check_in_date = DateTime.now
+      rental.movie.available_inventory = rental.movie.available_inventory + 1
+      render json: jsonify(rental.movie.available_inventory)
+    else
+      render json: { errors: { rental_id: ["No such rental"] }}, status: :bad_request
+    end
+  end
 
   # def self.check_out
   #   rental = Rental.new(rental_params)
