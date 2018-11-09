@@ -17,6 +17,9 @@ class RentalsController < ApplicationController
 
   def create
     rental = Rental.new(rental_params)
+    movie = Movie.find_by(id: rental_params[:movie_id])
+    # binding.pry
+    customer = Customer.find_by(id: rental_params[:customer_id])
     if rental.movie.available_inventory == 0
       # binding.pry
       render json: { errors: { rental_id: ["No available inventory"] }}, status: :bad_request
@@ -24,8 +27,7 @@ class RentalsController < ApplicationController
       rental.check_out_date = DateTime.now
       rental.due_date = DateTime.now + 1.week
       if rental.save
-        rental.movie.available_inventory = rental.movie.available_inventory - 1
-        # binding.pry
+        rental.check_out_movie(customer, movie)
         render json: jsonify(rental.movie.available_inventory)
       else
         render_error(:bad_request, rental.errors.messages)
@@ -35,12 +37,16 @@ class RentalsController < ApplicationController
 
   def check_in
     rental = Rental.find_by(rental_params)
+    movie = Movie.find_by(id: rental_params[:movie_id])
+    customer = Customer.find_by(id: rental_params[:customer_id])
     if rental
       rental.check_in_date = DateTime.now
-      rental.movie.available_inventory = rental.movie.available_inventory + 1
-      render json: jsonify(rental.movie.available_inventory)
-    else
-      render json: { errors: { rental_id: ["No such rental"] }}, status: :bad_request
+      rental.check_in_movie(customer, movie)
+      if rental.save
+        render json: jsonify(rental.movie.available_inventory)
+      else
+        render json: { errors: { rental_id: ["No such rental"] }}, status: :bad_request
+      end
     end
   end
 

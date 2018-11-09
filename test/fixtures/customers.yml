@@ -12,7 +12,7 @@ one:
   state: WA
   postal_code: 12345
   phone: 222-333-4444
-  movies_checked_out:
+  movies_checked_out_count:
 
 # column: value
 #
@@ -24,7 +24,7 @@ two:
   state: WA
   postal_code: 23456
   phone: 333-444-5555
-  movies_checked_out:
+  movies_checked_out_count:
 
 
 three:
@@ -35,4 +35,4 @@ three:
     state: WY
     postal_code: 45678
     phone: 555-666-7777
-    movies_checked_out:
+    movies_checked_out_count:
