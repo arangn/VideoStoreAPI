@@ -27,7 +27,7 @@
 							"",
 							"// Save info on the first customer",
 							"postman.setEnvironmentVariable(\"customer_id\", jsonData[0].id);",
-							"postman.setEnvironmentVariable(\"customer_mcoc\", jsonData[0].movies_checked_out_count);",
+							"postman.setEnvironmentVariable(\"customer_mcoc\", jsonData[0].movies_checked_out_count_count);",
 							"",
 							"// Check required fields",
 							"var hasId = true;",
@@ -43,7 +43,7 @@
 							"  hasRegisteredAt = hasRegisteredAt && \"registered_at\" in customer;",
 							"  hasPostalCode = hasPostalCode && \"postal_code\" in customer;",
 							"  hasPhone = hasPhone && \"phone\" in customer;",
-							"  hasMoviesCheckedOutCount = hasMoviesCheckedOutCount && \"movies_checked_out_count\" in customer;",
+							"  hasMoviesCheckedOutCount = hasMoviesCheckedOutCount && \"movies_checked_out_count_count\" in customer;",
 							"});",
 							"",
 							"tests[\"All customers have id\"] = hasId;",
@@ -51,7 +51,7 @@
 							"tests[\"All customers have registered_at\"] = hasRegisteredAt;",
 							"tests[\"All customers have postal_code\"] = hasPostalCode;",
 							"tests[\"All customers have phone\"] = hasPhone;",
-							"tests[\"All customers have movies_checked_out_count\"] = hasMoviesCheckedOutCount;"
+							"tests[\"All customers have movies_checked_out_count_count\"] = hasMoviesCheckedOutCount;"
 						]
 					}
 				}
@@ -259,7 +259,7 @@
 							"",
 							"// Check that the mcoc has increased",
 							"var expected = Number(postman.getEnvironmentVariable(\"customer_mcoc\")) + 1;",
-							"tests[\"Customer's movie check out count increased\"] = customerList[0].movies_checked_out_count === expected;",
+							"tests[\"Customer's movie check out count increased\"] = customerList[0].movies_checked_out_count_count === expected;",
 							""
 						]
 					}
@@ -408,7 +408,7 @@
 							"",
 							"// Check that the mcoc has decreased",
 							"var expected = Number(postman.getEnvironmentVariable(\"customer_mcoc\"));",
-							"tests[\"Customer's movie check out count decreased\"] = customerList[0].movies_checked_out_count === expected;",
+							"tests[\"Customer's movie check out count decreased\"] = customerList[0].movies_checked_out_count_count === expected;",
 							""
 						]
 					}

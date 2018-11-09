@@ -9,4 +9,21 @@ class Rental < ApplicationRecord
   # Calcluate due date based on check_out_date
   # Generate Overdue status based on due date and check_in_date
 
+  def check_out_movie(customer, movie)
+
+    available = movie.available_inventory
+    movie.update(available_inventory: available - 1)
+
+    checked_out = customer.movies_checked_out_count
+    customer.update(movies_checked_out_count: checked_out + 1)
+  end
+
+  def check_in_movie(customer, movie)
+
+    available = movie.available_inventory
+    movie.update(available_inventory: available + 1)
+
+    checked_out = customer.movies_checked_out_count
+    customer.update(movies_checked_out_count: checked_out - 1)
+  end
 end
