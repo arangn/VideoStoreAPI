@@ -91,18 +91,64 @@ describe RentalsController do
       expect(body["errors"]).must_include "movie_id"
       must_respond_with :bad_request
     end
-    # # it "decrements one movie from available inventory" do
-    # #   expect {
-    # #     post rentals_path, params: {rental: rental_data}
-    # #   }.must_change "Rental.count"
-    # #   body = check_response(expected_type: Hash)
-    # #   rental = Rental.find(body["id"].to_i)
-    # #   movie = rental.movie_id
-    # #   movie = Movie.find(movie)
-    # #   expect(Movie.available_inventory).must_change "available_inventory.count", -1
-    # # end
+    it "decrements available_inventory by one" do
+      rental = Rental.new(check_out_date: "Wed, 29 Apr 2015 07:54:14 -0700", check_in_date: "Wed, 6 May 2015 07:54:14 -0700", due_date: "Wed, 6 May 2015 07:54:14 -0700", customer_id: customers(:one).id, movie_id: movies(:one).id)
+      binding.pry
+
+      # expect {
+      #   post rentals_path, params: {rental: rental_data}
+      # }.must_change "Rental.count"
+      # binding.pry
+      # body = check_response(expected_type: Hash)
+      #
+      # movie = Movie.find(body["id"].to_i)
+      #
+      # expect {
+      #   post rentals_path, params: {rental: rental_data}
+      # }.must_change "Movie.available_inventory.count"
+
+    end
+    # it "changes the check_out date to now" do
+    #   let(:rental_data_2) {
+    #     {
+    #       customer_id: customers(:one).id,
+    #       movie_id: movies(:one).id
+    #     }
+    #   }
+    #
+    #   expect {
+    #     post rentals_path, params: {rental: rental_data}
+    #   }.must_change "Rental.count"
+    #
+    #
+    # end
+    it "changes the due date to one week from now" do
+
+    end
   end
 
+  describe 'check_in method' do
+    it "changes the check_in_date to now" do
+
+    end
+    it "returns the rental" do
+
+    end
+    it "returns an error if the rental cannot be found" do
+
+    end
+  end
+
+  # # it "decrements one movie from available inventory" do
+  # #   expect {
+  # #     post rentals_path, params: {rental: rental_data}
+  # #   }.must_change "Rental.count"
+  # #   body = check_response(expected_type: Hash)
+  # #   rental = Rental.find(body["id"].to_i)
+  # #   movie = rental.movie_id
+  # #   movie = Movie.find(movie)
+  # #   expect(Movie.available_inventory).must_change "available_inventory.count", -1
+  # # end
 #   describe "movie" do
 #     before do
 #       @rental_data =
